@@ -5,12 +5,11 @@
 ;(function($, Mozilla) {
     'use strict';
 
-    var $html = $('html');
-
     var isOldIE = (/MSIE\s[1-7]\./.test(navigator.userAgent));
 
     // slideshow/accordion variables
     var customizeAccordion;
+    var $accordionElem = $('#customize-accordion');
     var $phoneWrapper = $('#phone-wrapper');
     var $screencastWrapper = $('#screencast-wrapper');
     var $phoneScreens = $('#phone-screens');
@@ -32,19 +31,6 @@
         $('.dl-button-wrapper').hide();
 
         $('#subscribe-wrapper').removeClass('floating');
-    }
-
-    // show SMS link for all desktop users (en-US only for now)
-    if ($html.is('[lang|="en"]') && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
-        $.getScript('//geo.mozilla.org/country.js', function() {
-            try {
-                if (geoip_country_code().toLowerCase() === 'us') {
-                    $('#sms-link').fadeIn();
-                }
-            } catch(err) {
-                // no action taken - leave #sms-link hidden
-            }
-        });
     }
 
     // stops any running slideshow
@@ -123,7 +109,7 @@
     };
 
     var initAccordionsDesktop = function() {
-        customizeAccordion = new Mozilla.Accordion($('#customize-accordion'));
+        customizeAccordion = new Mozilla.Accordion($accordionElem);
         var hasExpanded = -1;
 
         // if no accordions are open, open the first section
@@ -184,6 +170,10 @@
                 for (var i = 0; i < customizeAccordion.sections.length; i++) {
                     section = customizeAccordion.sections[i];
 
+                    // set the min-height of the accordion to current height
+                    // before collapsing section to avoid page height jump.
+                    $accordionElem.css('min-height', $accordionElem.height());
+
                     if (section.expanded) {
                         section.collapse();
                     }
@@ -233,7 +223,7 @@
         $('.accordion [data-accordion-role="tab"]').off('click.android-desktop');
         $('.customize-pager').off('click');
 
-        customizeAccordion = new Mozilla.Accordion($('#customize-accordion'));
+        customizeAccordion = new Mozilla.Accordion($accordionElem);
     };
 
     // fire sync animation when scrolled to
@@ -275,29 +265,38 @@
         }
     }
 
-    var trackClick = function (gaArgs, event) {
+    var trackClick = function (gaArgs, event, href) {
         if (event.metaKey || event.ctrlKey) {
             // Open link in new tab
             gaTrack(gaArgs);
         } else {
             event.preventDefault();
-            gaTrack(gaArgs, function() { window.location = event.target.href; });
+            gaTrack(gaArgs, function() { window.location = href; });
         }
     };
 
     // track link on the primary CTA
     $('#intro .dl-button').on('click', function (event) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'download click', 'Firefox for Android'], event);
+        var href = this.href;
+        trackClick(['_trackEvent', 'Firefox Downloads', 'download click', 'Firefox for Android'], event, href);
     });
 
     // track link on the secondary CTA
     $('#subscribe-download-wrapper .dl-button').on('click', function(event) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'bottom download click', 'Firefox for Android'], event);
+        var href = this.href;
+        trackClick(['_trackEvent', 'Firefox Downloads', 'bottom download click', 'Firefox for Android'], event, href);
+    });
+
+    // track link on the family nav
+    $('#fxfamilynav-cta-wrapper .dl-button').on('click', function(event) {
+        var href = this.href;
+        trackClick(['_trackEvent', 'Firefox Downloads', 'nav download click', 'Firefox for Android'], event, href);
     });
 
     // track links except the accordion
     $('#privacy, #sync, #subscribe-download-wrapper ul').on('click', 'a', function(event) {
-        trackClick(['_trackEvent', '/android/ Interactions', 'link click', $(this).attr('href')], event);
+        var href = this.href;
+        trackClick(['_trackEvent', '/android/ Interactions', 'link click', href], event, href);
     });
 
     // track accordion interactions
@@ -308,6 +307,7 @@
             'addons': 'All your faves, front and center',
             'homepanel': 'A touch more personal',
             'search': 'Any search you like',
+            'reading': 'Read and save articles easily',
             'language': 'Change your language',
             'screencast': 'Take it to the big screen'
         }[$(this).attr('id')];
@@ -317,8 +317,9 @@
         }).on('collapse', '[role="tabpanel"]', function() {
             gaTrack(['_trackEvent', '/android/ Interactions', 'close', section]);
         }).on('click', 'a', function(event) {
+            var href = this.href;
             interaction = $(this).hasClass('see-how') ? 'see how it works link click' : 'learn more link click';
-            trackClick(['_trackEvent', '/android/ Interactions', interaction, section], event);
+            trackClick(['_trackEvent', '/android/ Interactions', interaction, section], event, href);
         });
     });
 
@@ -334,12 +335,6 @@
         if (section && direction === 'down') {
             gaTrack(['_trackEvent', '/android/ Interactions', 'scroll', section]);
         }
-    });
-
-    // document ready stuff
-    $(function() {
-        // make android robot say hello
-        $('#intro-android').addClass('hello');
     });
 
     Mozilla.FxFamilyNav.init({ primaryId: 'android', subId: 'index' });
