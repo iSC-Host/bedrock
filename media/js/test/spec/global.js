@@ -326,40 +326,39 @@ describe('global.js', function() {
 
         /* Google Analytics is not loaded for these tests, so we'll
          * use an array and test the objects that get pushed to it */
-        window.dataLayer = [];
+        window._gaq = [];
 
         /* For this test suite we use fake timers, which provides
          * synchronous implementation of setTimeout. Seems a little
-         * waiting is needed when testing a push to window.dataLayer */
+         * waiting is needed when testing a push to window._gaq */
         beforeEach(function () {
             clock = sinon.useFakeTimers();
-            evt = {event: 'GA Track Event', action: 'GA event test', label: 'test', value:'test'};
-
         });
 
         afterEach(function () {
             clock.restore();
-            window.dataLayer = [];
+            window._gaq = [];
         });
 
         it('should track a single GA event', function () {
+            var evt = ['_trackEvent', 'GA event test', 'test', 'test'];
             gaTrack(evt);
             clock.tick(10);
-            expect(window.dataLayer[0].event).toEqual('GA Track Event');
+            expect(window._gaq[0]).toEqual(evt);
         });
 
         it('should fire a callback if needed', function () {
             /* For our callback use a jasmine spy, then we can easily test
              * to make sure it gets called once gaTrack has finished executing */
             var callback = jasmine.createSpy();
-            gaTrack(evt, callback);
+            gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
             clock.tick(700); // must be longer than callback timeout (600ms) in gaTrack
             expect(callback).toHaveBeenCalled();
         });
 
         it('should not fire a callback twice', function () {
             var callback = jasmine.createSpy();
-            gaTrack(evt, callback);
+            gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
             clock.tick(700); // must be longer than callback timeout (600ms) in gaTrack
             expect(callback.callCount).toEqual(1);
             // The callback should not be executed by subsequent GA events
@@ -368,10 +367,10 @@ describe('global.js', function() {
             expect(callback.callCount).toEqual(1);
         });
 
-        it('should still fire a callback if window.dataLayer is undefined', function () {
+        it('should still fire a callback if window._gaq is undefined', function () {
             var callback = jasmine.createSpy();
-            window.dataLayer = undefined;
-            gaTrack(evt, callback);
+            window._gaq = undefined;
+            gaTrack(['_trackEvent', 'GA event test', 'test', 'test'], callback);
             clock.tick(10);
             expect(callback).toHaveBeenCalled();
         });

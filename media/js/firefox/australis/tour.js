@@ -58,7 +58,7 @@
             window.dataLayer.push({
                 'event': 'firstrun-tour-view',
                 'interaction': 'First Time Seeing Tour',
-                'browserAction': firstTime,
+                'browserAction': firstTime
             });
         } catch (e) {}
 
@@ -77,14 +77,14 @@
                     Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
                     window.dataLayer.push({
                         event: 'search-change-interaction',
-                        searchEngine: 'yahooDefault',
+                        searchEngine: 'yahooDefault'
                     });
                 } else {
                     Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_otherDefault');
                     Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
                     window.dataLayer.push({
                         event: 'search-change-interaction',
-                        searchEngine: 'otherDefault',
+                        searchEngine: 'otherDefault'
                     });
                 }
             });

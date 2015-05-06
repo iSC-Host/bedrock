@@ -155,7 +155,7 @@ window.trans = function trans(stringId) {
 };
 
 
-function gaTrack(obj, callback) {
+function gaTrack(eventArray, callback) {
     // submit eventArray to GA and call callback only after tracking has
     // been sent, or if sending fails.
     //
@@ -169,67 +169,18 @@ function gaTrack(obj, callback) {
     //           e.preventDefault();
     //           $(_this).off('submit', handler);
     //           gaTrack(
-    //             {
-    //               'event': 'newsletter-interaction',
-    //               'browserAction': 'submit',
-    //               'newsletter': newsletter
-    //              },
-    //                function() {$(_this).submit();}
+    //              ['_trackEvent', 'Newsletter Registration', 'submit', newsletter],
+    //              function() {$(_this).submit();}
     //           );
     //      };
     //      $(thing).on('submit', handler);
     // });
-    var classof = function(o) {
-        if (o === null) {
-            return 'Null';
-        }
-        if (o === undefined) {
-            return 'Undefined';
-        }
-        return Object.prototype.toString.call(o).slice(8, -1);
-    };
 
     var hasCallback = typeof(callback) === 'function';
 
-    if (typeof(window.dataLayer) === 'object') {
+    if (typeof(window._gaq) === 'object') {
         // send event to GA
-        if (classof(obj) === 'Array') {
-            switch (obj[0]) {
-                case '_trackEvent':
-                    window.dataLayer.push({
-                        'event': obj[0],
-                        'hitType': 'event',
-                        'category': obj[1],
-                        'action': obj[2],
-                        'opt_label': obj[3],
-                        'opt_value': obj[4],
-                        'opt_noninteraction': obj[5]
-                    });
-                    break;
-                case '_trackPageview':
-                    window.dataLayer.push({
-                        'event': obj[0],
-                        'hitType': 'pageview',
-                        'opt_pageURL': obj[1]
-                    });
-                    break;
-                case '_setCustomVar':
-                    window.dataLayer.push({
-                        'event': obj[0],
-                        'index': obj[1],
-                        'name': obj[2],
-                        'value': obj[3],
-                        'opt_scope': obj[4]
-                    });
-                    break;
-                default:
-                    window.dataLayer.push({'event': 'for-review', 'commandArray': obj});
-                    break;
-            }
-        } else if (classof(obj) === 'Object') {
-            // window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push(obj);
-        }
+        window._gaq.push(eventArray);
         // Only set up timer and hitCallback if a callback exists.
         if (hasCallback) {
             // Need a timeout in order for __utm.gif request to complete in

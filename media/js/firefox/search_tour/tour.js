@@ -65,7 +65,7 @@
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
-            broswerAction: 'Try'
+            browserAction: 'Try'
         });
     }
 
@@ -80,7 +80,7 @@
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
-            broswerAction: 'Close'
+            browserAction: 'Close'
         });
     }
 
@@ -131,7 +131,7 @@
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
-            broswerAction: 'Switch'
+            browserAction: 'Switch'
         });
     }
 
@@ -146,7 +146,7 @@
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
-            broswerAction: 'Close'
+            browserAction: 'Close'
         });
     }
 
@@ -185,7 +185,7 @@
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
-            broswerAction: 'ShowHanger'
+            browserAction: 'ShowHanger'
         });
     }
 
@@ -331,14 +331,14 @@
                                     window.dataLayer.push({
                                         event: 'whatsnew-search-interaction',
                                         interaction: 'Default',
-                                        broswerAction: 'ViewPage'
+                                        browserAction: 'ViewPage'
                                     });
                                 }
                                 window.dataLayer = window.dataLayer || [];
                                 window.dataLayer.push({
                                     event: 'whatsnew-search-interaction',
                                     interaction: 'All',
-                                    broswerAction: 'otherDefault'
+                                    browserAction: 'otherDefault'
                                 });
 
                             } else {
@@ -349,7 +349,7 @@
                                 window.dataLayer.push({
                                     event: 'whatsnew-search-interaction',
                                     interaction: 'All',
-                                    broswerAction: 'yahooDefault'
+                                    browserAction: 'yahooDefault'
                                 });
                             }
                         });
@@ -361,7 +361,7 @@
                         window.dataLayer.push({
                             event: 'whatsnew-search-interaction',
                             interaction: 'All',
-                            broswerAction: 'noSearchbox'
+                            browserAction: 'noSearchbox'
                         });
                     }
                 }
@@ -373,7 +373,7 @@
             window.dataLayer.push({
                 event: 'whatsnew-search-interaction',
                 interaction: 'Default',
-                broswerAction: 'ViewPage'
+                browserAction: 'ViewPage'
             });
         }
 

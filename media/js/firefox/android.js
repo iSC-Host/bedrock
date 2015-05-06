@@ -283,7 +283,7 @@
         } else {
             event.preventDefault();
             gaObj.eventCallback = function() { window.location = event.target.href;};
-            window.window.dataLayer.push(gaObj);
+            window.dataLayer.push(gaObj);
         }
     };
 

@@ -168,15 +168,14 @@
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'mozilla-news-interaction',
-                browserAction: 'Next',
+                browserAction: 'Next'
             });
         });
         $('.news-buttons .btn-prev').bind('click', function() {
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'mozilla-news-interaction',
-                browserAction: 'Previous',
+                browserAction: 'Previous'
             });
         });
     }

@@ -206,9 +206,6 @@ var Tabzilla = (function (Tabzilla) {
             .removeClass('tabzilla-closed');
 
         panel.focus();
-        //Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({event: 'tabzilla-interaction', browserAction: 'Open Tabzilla', interaction: 'click'});
 
         return panel;
     };
@@ -222,9 +219,6 @@ var Tabzilla = (function (Tabzilla) {
             .attr({'aria-expanded' : 'false'})
             .addClass('tabzilla-closed')
             .removeClass('tabzilla-opened');
-        //Google Analytics
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({event: 'tabzilla-interaction', browserAction: 'Close Tabzilla', interaction: 'click'});
 
         return tab;
     };
@@ -349,7 +343,6 @@ var Tabzilla = (function (Tabzilla) {
     };
     Infobar.prototype.trackEvent = function (action, label, value,
                                              nonInteraction, callback) {
-        window.dataLayer = window.dataLayer || [];
         if (typeof(window.gaTrack) !== 'function') {
             return;
         }
@@ -357,16 +350,6 @@ var Tabzilla = (function (Tabzilla) {
         // The 5th value and 6th nonInteraction parameters are optional.
         // See the Google Analytics Developer Guide for details:
         // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            event: 'tabzilla-infobar-interaction',
-            elementName: this.name,
-            interaction: action,
-            location: label,
-            eventValue: value,
-            nonInteraction: nonInteraction,
-            eventCallback: callback
-        });
     };
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
@@ -567,12 +550,6 @@ var Tabzilla = (function (Tabzilla) {
             $form.unbind('submit');
 
             timer = setTimeout(callback, 500);
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'tabzilla-interaction',
-                'interaction': 'search',
-                'browserAction': keyword
-            });
         });
     };
     var addEaseInOut = function () {
@@ -696,13 +673,13 @@ var Tabzilla = (function (Tabzilla) {
     + '    <div id="tabzilla-promo">'
         {% if l10n_has_tag('gear_store') %}
     + '      <div class="snippet" id="tabzilla-promo-gear">'
-    + '        <a href="https://gear.mozilla.org/?ref=OMG_launch&amp;utm_campaign=OMG_launch&amp;utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=tabzilla" data-element-location="tabzilla">'
+    + '        <a href="https://gear.mozilla.org/?ref=OMG_launch&amp;utm_campaign=OMG_launch&amp;utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=tabzilla">'
     + '          <h4>{{ _('Official Mozilla gear is here')|js_escape }}</h4>'
     + '        </a>'
     + '      </div>'
         {% else %}
     + '      <div class="snippet" id="tabzilla-promo-fxos">'
-    + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz" data-element-location="tabzilla">'
+    + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
     + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
     + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
@@ -714,39 +691,39 @@ var Tabzilla = (function (Tabzilla) {
     + '        <li><h2>Mozilla</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/mission/?icn=tabz" data-element-location="tabzilla">{{ _('Mission')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/about/?icn=tabz" data-element-location="tabzilla">{{ _('About')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/projects/?icn=tabz" data-element-location="tabzilla">{{ _('Projects')|js_escape }}</a></li>'
-    + '              <li><a href="https://support.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Support')|js_escape }}</a></li>'
-    + '              <li><a href="https://developer.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Developer Network')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/mission/?icn=tabz">{{ _('Mission')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/about/?icn=tabz">{{ _('About')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/projects/?icn=tabz">{{ _('Projects')|js_escape }}</a></li>'
+    + '              <li><a href="https://support.mozilla.org/?icn=tabz">{{ _('Support')|js_escape }}</a></li>'
+    + '              <li><a href="https://developer.mozilla.org/?icn=tabz">{{ _('Developer Network')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Products')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/firefox/?icn=tabz" data-element-location="tabzilla">Firefox</a></li>'
-    + '              <li><a href="https://www.mozilla.org/thunderbird/?icn=tabz" data-element-location="tabzilla">Thunderbird</a></li>'
-    + '              <li><a href="https://www.mozilla.org/firefox/os/?icn=tabz" data-element-location="tabzilla">Firefox OS</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefox/?icn=tabz">Firefox</a></li>'
+    + '              <li><a href="https://www.mozilla.org/thunderbird/?icn=tabz">Thunderbird</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefox/os/?icn=tabz">Firefox OS</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Innovations')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://webmaker.org/?icn=tabz" data-element-location="tabzilla">Webmaker</a></li>'
-    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz" data-element-location="tabzilla">{{ _('Research')|js_escape }}</a></li>'
+    + '              <li><a href="https://webmaker.org/?icn=tabz">Webmaker</a></li>'
+    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz">{{ _('Research')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Get Involved')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz" data-element-location="tabzilla">{{ _('Volunteer')|js_escape }}</a></li>'
-    + '              <li><a href="https://careers.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Careers')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz" data-element-location="tabzilla">{{ _('Find us')|js_escape }}</a></li>'
-    + '              <li><a href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" class="donate" data-element-location="tabzilla">{{ _('Donate')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz" data-element-location="tabzilla">{{ _('Partner')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz">{{ _('Volunteer')|js_escape }}</a></li>'
+    + '              <li><a href="https://careers.mozilla.org/?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz">{{ _('Find us')|js_escape }}</a></li>'
+    + '              <li><a href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" class="donate">{{ _('Donate')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz">{{ _('Partner')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'

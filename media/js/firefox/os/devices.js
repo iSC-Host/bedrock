@@ -84,7 +84,7 @@ if (typeof window.Mozilla === 'undefined') {
         window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
-                event: 'overlay-exit',
+                event: 'overlay-exit'
             });
         } else {
             e.preventDefault();
