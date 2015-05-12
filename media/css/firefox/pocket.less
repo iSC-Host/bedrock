@@ -1,0 +1,60 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#firefox-pocket {
+    #outer-wrapper {
+        .aurora-bars(#c1e3f4, #cee8f6);
+        border-top: 4px solid #fff;
+    }
+
+    #wrapper {
+        width: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.content {
+    .border-box();
+    width: @widthDesktop;
+    margin: 0 auto;
+
+    @media only screen and (min-width: @breakDesktopWide) {
+        width: @widthDesktopWide;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobile;
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Tabzillita (little tabzilla) customizations
+#tabzilla {
+    z-index: 3;
+
+    &:before {
+        background: fade(#00bae6, 10%);
+    }
+}
+
+.secondary {
+    background: #f5f5f5;
+    color: #6b6c72;
+
+    h3 {
+        color: #6b6c72;
+    }
+}
