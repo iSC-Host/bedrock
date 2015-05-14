@@ -302,25 +302,6 @@
         trackClick({event: 'firefox-downloads', interaction: 'link click', downloadVersion: $(this).attr('href')}, event);
     });
 
-    // track accordion interactions
-    $('.customize-section').each(function() {
-        var interaction;
-        var section = {
-            'broadcast': 'Smarter sharing for all',
-            'addons': 'All your faves, front and center',
-            'homepanel': 'A touch more personal',
-            'search': 'Any search you like',
-            'language': 'Change your language',
-            'screencast': 'Take it to the big screen'
-        }[$(this).attr('id')];
-
-    });
-
-    //scroll tracking
-    $('#wrapper > *').waypoint(function(direction) {
-
-    });
-
 
     // document ready stuff
     $(function() {

@@ -18,7 +18,6 @@
 
         var trackDownloadButtonClick = function(a, position) {
             var href = a.href;
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - ' + position, downloadVersion: 'Firefox for Desktop', eventCallback: function() {
                             window.location = href;}});
         };
@@ -58,7 +57,6 @@
     $('.ga-section').waypoint(function(dir) {
         // only track scrolling down
         if (dir === 'down') {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'scroll-tracking', 
                 section: $(this).data('ga-label')

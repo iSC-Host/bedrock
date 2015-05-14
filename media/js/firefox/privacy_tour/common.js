@@ -81,7 +81,6 @@
         'onComplete': function() {
             // YouTube player loses this callback for some reason when re-initializing after being
             // moved in the DOM. Leaving this here for future reference.
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'video-interaction',
                 interaction: 'Finish',

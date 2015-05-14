@@ -25,6 +25,7 @@ STATSD_CLIENT = 'django_statsd.clients.normal'
 # Google Apps tracking code
 GA_ACCOUNT_CODE = ''
 
+# Google Tag Manager ID Example: UA-XXXXX-XX
 GTM_CONTAINER_ID = ''
 
 SESSION_COOKIE_SECURE = False

@@ -6,7 +6,6 @@
 if (typeof Mozilla.Accordion === 'function') {
     Mozilla.Accordion.GLOBAL_ONEXPAND = function(section) {
         // Google Analytics event tracking
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'accordion-interaction',
             interaction: 'Expand',
@@ -16,7 +15,6 @@ if (typeof Mozilla.Accordion === 'function') {
 
     Mozilla.Accordion.GLOBAL_ONCOLLAPSE = function(section) {
         // Google Analytics event tracking
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'accordion-interaction',
             interaction: 'Collapse',

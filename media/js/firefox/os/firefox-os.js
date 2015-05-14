@@ -177,7 +177,6 @@
         var callback = function () {
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'fxos-consumer',
             interaction: 'Get A Phone Exit',
@@ -232,7 +231,6 @@
         };
 
         //track GA event for useful links
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'fxos-consumer',
             interaction: 'click',

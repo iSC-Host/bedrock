@@ -34,7 +34,6 @@ $(function() {
     $('#tips-nav-direct a').on('click', function() {
         var thisTabName = $(this).attr('href');
         console.log(thisTabName);
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: thisTabName.substr(1),
@@ -45,7 +44,6 @@ $(function() {
     // Setup GA tracking for paragraph and list links
     $('.tip-column p a, .tip-column li a').on('click', function(e) {
         href = $(this).attr('href');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: pager.currentPage.id,
@@ -59,7 +57,6 @@ $(function() {
     // Setup GA tracking TED video link
     $('.greenwald a').on('click', function(e) {
         href = $(this).attr('href');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: pager.currentPage.id,
@@ -74,7 +71,6 @@ $(function() {
     $('.tip-footer .next a').on('click', function(e) {
         e.preventDefault();
         pager.nextPageWithAnimation();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: pager.currentPage.id,
@@ -86,7 +82,6 @@ $(function() {
     $('.tip-footer .previous a').on('click', function(e) {
         e.preventDefault();
         pager.prevPageWithAnimation();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: pager.currentPage.id,

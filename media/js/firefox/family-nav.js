@@ -275,7 +275,6 @@ if (typeof window.Mozilla === 'undefined') {
                     childName += ' ' + parentName[2];
                 }
 
-                window.dataLayer = window.dataLayer || [];
                 if (e.metaKey || e.ctrlKey) {
                     window.dataLayer.push({
                         event: 'family-nav2-interaction',
@@ -298,7 +297,6 @@ if (typeof window.Mozilla === 'undefined') {
             // clicks on tertiary nav links
             $tertiaryNavs.on('click', 'a', function(e) {
                 var $this = $(this);
-                window.dataLayer = window.dataLayer || [];
                 if (e.metaKey || e.ctrlKey || $this.attr('rel') === 'external') {
                     window.dataLayer.push({
                         event: 'family-nav2-interaction',
@@ -439,7 +437,6 @@ if (typeof window.Mozilla === 'undefined') {
 
                 // track when opening menu
                 if ($tertiaryNavTrigger.hasClass('active')) {
-                    window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         event: 'family-nav-interaction',
                         location: 'Side Menu',
@@ -548,7 +545,6 @@ if (typeof window.Mozilla === 'undefined') {
             // clicks on top level nav links
             $primaryLinks.on('click', function(e) {
                 var $this = $(this);
-                window.dataLayer = window.dataLayer || [];
                 if (e.metaKey || e.ctrlKey) {
                     window.dataLayer.push({
                         event: 'family-nav-interaction',
@@ -575,7 +571,6 @@ if (typeof window.Mozilla === 'undefined') {
                 var parentName = $this.data('id').split('-');
 
                 var trackName = ($fxFamilyHeader.hasClass('stuck')) ? parentName[0] + ' - Persistent Nav' : parentName[0];
-                window.dataLayer = window.dataLayer || [];
                 if (e.metaKey || e.ctrlKey) {
                     window.dataLayer.push({
                         event: 'family-nav-interaction',

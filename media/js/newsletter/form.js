@@ -87,7 +87,6 @@ $(function () {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 $self.off('submit');
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({event: 'newsletter-interaction', browserAction: 'submit', newsletter: newsletter, eventCallback: $self.submit() });
             }
         }
@@ -152,7 +151,6 @@ $(function () {
 
                 // track signup in GA
                 var newsletter = getNewsletterName($self);
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({event: 'newsletter-interaction', browserAction: 'submit', newsletter: newsletter});
 
             } else if (data.errors) {

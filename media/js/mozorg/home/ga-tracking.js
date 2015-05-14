@@ -20,46 +20,64 @@ $(function () {
     $largeTile = $('.promo-large-portrait > a.panel-link, .promo-large-landscape > a.panel-link');
     $largeTileParent = $largeTile.parent();
     promoClass = $largeTileParent.hasClass('promo-large-portrait') ? 'portrait' : 'landscape';
-    $largeTile.attr('data-promotion-id', $largeTileParent.prop('id'))
-        .attr('data-promotion-name', $largeTileParent.data('name'))
-        .attr('data-promotion-class', 'promo-large-' + promoClass)
-        .attr('data-promotion-type', 'tile');
+    $largeTile.attr({
+        'data-promotion-id': $largeTileParent.prop('id'),
+        'data-promotion-name': $largeTileParent.data('name'),
+        'data-promotion-class': 'promo-large-' + promoClass,
+        'data-promotion-type': 'tile'
+    });
 
     $smallTile = $('.promo-small-landscape > a.panel-link');
     $smallTileParent = $smallTile.parent();
-    $smallTile.attr('data-promotion-id', $smallTileParent.prop('id'))
-        .attr('data-promotion-name', $smallTileParent.data('name'))
-        .attr('data-promotion-class', 'promo-small-landscape')
-        .attr('data-promotion-type', 'tile');
+    $smallTile.attr({
+        'data-promotion-id': $smallTileParent.prop('id'),
+        'data-promotion-name': $smallTileParent.data('name'),
+        'data-promotion-class': 'promo-small-landscape',
+        'data-promotion-type': 'tile'
+    });
 
     $faces = $('.promo-face > a');
-    $faces.attr('data-promotion-id', $faces.parent().prop('id'))
-        .attr('data-promotion-name', 'Mozillians')
-        .attr('data-promotion-class', 'promo-face')
-        .attr('data-promotion-type', 'tile');
+    $faces.attr({
+        'data-promotion-id': $faces.parent().prop('id'),
+        'data-promotion-name': 'Mozillians',
+        'data-promotion-class': 'promo-face',
+        'data-promotion-type': 'tile'
+    });
 
     $tweets = $('.twt-actions > a');
-    $tweets.attr('data-promotion-id', $tweets.parent().closest('li').prop('id'))
-        .attr('data-promotion-name', 'Mozilla Tweets ' + $tweets.attr('title'))
-        .attr('data-promotion-class', 'promo-small-landscape')
-        .attr('data-promotion-type', 'tile');
+    $tweets.attr({
+        'data-promotion-id': $tweets.parent().closest('li').prop('id'),
+        'data-promotion-name': 'Mozilla Tweets ' + $tweets.attr('title'),
+        'data-promotion-class': 'promo-small-landscape',
+        'data-promotion-type': 'tile'
+    });
 
     //generic links
     $mainNav = $('#nav-main-menu li a');
-    $mainNav.attr('data-element-location', 'nav click').attr('data-link-type', $mainNav.data('name'));
+    $mainNav.attr({
+        'data-element-location': 'nav click',
+        'data-link-type': $mainNav.data('name')
+    });
 
-    $('#upcoming-events a').attr('data-element-location', 'Upcoming Event Link Clicks')
-        .attr('data-link-type', 'href');
-    $('.contribute-btn').attr('data-element-location', 'button-click')
-        .attr('data-link-type', 'Get Involved with Mozilla today');
-    $('#secondary-links a').attr('data-element-location', 'Secondary Link Clicks')
-        .attr('data-link-type', 'href');
+    $('#upcoming-events a').attr({
+        'data-element-location': 'Upcoming Event Link Clicks',
+        'data-link-type': 'href'
+    });
+
+    $('.contribute-btn').attr({
+        'data-element-location': 'button-click',
+        'data-link-type': 'Get Involved with Mozilla today'
+    });
+    
+    $('#secondary-links a').attr({
+        'data-element-location': 'Secondary Link Clicks',
+        'data-link-type': 'href'
+    });
 
     // track user scrolling through each section down the page
     $('.module').waypoint(function(direction) {
         if (direction === 'down') {
             var id = $(this).prop('id');
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({event: 'scroll-tracking', section: id});
         }
     }, { offset: '100%' });
@@ -79,7 +97,6 @@ $(function () {
         var tilePosition = $promo.prop('id');
         var tileSize = 'promo-small-landscape';
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - top', downloadVersion: type, tilePosition: tilePosition, tileSize: tileSize});
         } else {
@@ -99,7 +116,6 @@ $(function () {
             window.location = href;
         };
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - primary', downloadVersion: type});
         } else {

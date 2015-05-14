@@ -30,7 +30,6 @@ $(function() {
 
         $origin.addClass('modal-origin');
 
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'manifesto-interaction', 
             browserAction: action, 
@@ -61,7 +60,6 @@ $(function() {
                         nav_modal($(this).hasClass('prev') ? -1 : 1);
                     });
 
-                    window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         event: 'manifesto-interaction',
                         browserAction: 'modal open',
@@ -108,7 +106,6 @@ $(function() {
     // https://dev.twitter.com/docs/intents
     var open_twitter_subwin = function (section, url) {
 
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'manifesto-interaction',
             browserAction: 'tweet',
@@ -155,7 +152,6 @@ $(function() {
             action = href.match(/youtube/) ? 'modal video link click'
                                            : 'modal link click';
 
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'manifesto-interaction',
                 browserAction: action,
@@ -185,7 +181,6 @@ $(function() {
         } else if (!$this.hasClass('share-button')) {
             // Open the link in the current tab
 
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'manifesto-interaction',
                 browserAction: 'content link click',

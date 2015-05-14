@@ -65,7 +65,6 @@ function init_lang_switcher() {
     $('#language').change(function(event) {
         event.preventDefault();
         //Google Analytics
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'change-language',
             'selected-language': $(this).val(),

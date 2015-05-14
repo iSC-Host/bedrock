@@ -165,14 +165,12 @@
         $buttons.prependTo('.extra-news > .control');
 
         $('.news-buttons .btn-next').bind('click', function() {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'mozilla-news-interaction',
                 browserAction: 'Next'
             });
         });
         $('.news-buttons .btn-prev').bind('click', function() {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'mozilla-news-interaction',
                 browserAction: 'Previous'
@@ -183,7 +181,6 @@
 
     // Track when/which accordion panels are opened
     var track_accordion = function(position, id) {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'homepage-interaction', 
             interaction: 'open', 
@@ -199,7 +196,6 @@
             $(this).blur();
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'homepage-interaction', 
             interaction: 'click', 
@@ -217,7 +213,6 @@
 
         var panel = $(this).parents('.panel');
 
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'homepage-interaction',
             interaction: 'submit',
@@ -237,7 +232,6 @@
 
         var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
 
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'homepage-interaction',
             interaction: action,
@@ -259,7 +253,6 @@
         } else {
             platform = 'Firefox Desktop';
         }
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click', downloadVersion: platform, eventCallback: callback});
     });
 

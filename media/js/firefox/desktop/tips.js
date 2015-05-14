@@ -21,9 +21,6 @@
 
     // mozilla pager stuff must be in doc ready wrapper
     $(function() {
-        // GA tracking on page load
-        // Google doesn't recognize hash by default
-        var currentURL = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
 
         var pager = Mozilla.Pager.pagers[0];
 
@@ -118,7 +115,6 @@
             window.location.hash = $this.attr('href').replace('#', '');
 
             // GA tracking
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'tips-interaction',
                 interaction: 'tab clicks to',
@@ -143,7 +139,6 @@
                 window.location.hash = pager.currentPage.id.replace('-tip', '');
                 // GA tracking
                 var gaAction = (isPrev) ? 'prev link to' : 'next link to';
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     event: 'tips-interaction',
                     interaction: gaAction,
@@ -172,7 +167,6 @@
             // determine position
             var pos = ($(this).closest('.button-wrapper').prop('id') === 'main-nav-wrapper') ? 'top' : 'bottom';
 
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'tips-interaction',
                 interaction: 'Social Share',
@@ -199,7 +193,6 @@
 
             var href = this.href;
 
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click', downloadVersion: 'Firefox for Desktop', eventCallback: function() {
                 window.location = href;}});
         });

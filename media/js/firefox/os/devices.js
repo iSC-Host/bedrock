@@ -78,10 +78,7 @@ if (typeof window.Mozilla === 'undefined') {
     */
 
     var trackProviderExit = function(e) {
-        var $this = $(this);
         var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'overlay-exit'
@@ -118,7 +115,6 @@ if (typeof window.Mozilla === 'undefined') {
     $locationSelect.on('change', function() {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 event: 'device-drop-down',
                 countryCode: COUNTRY_CODE,
@@ -161,7 +157,6 @@ if (typeof window.Mozilla === 'undefined') {
                     }, 200);
                 });
 
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'device-interaction',
                     'deviceName': selectedDevice + ' Interactions',
@@ -183,7 +178,6 @@ if (typeof window.Mozilla === 'undefined') {
         $(this).parents('.device-detail-list:first').slideUp('fast', function() {
             $deviceDetails.hide();
         });
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'device-interaction',
             deviceName: selectedDevice + ' Interactions',
@@ -276,7 +270,6 @@ if (typeof window.Mozilla === 'undefined') {
 
     // track mozilla pager tab clicks
     $('.pager-tabs').on('click', 'a', function() {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'device-interaction',
             deviceName: selectedDevice + ' Interactions',

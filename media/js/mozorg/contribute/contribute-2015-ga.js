@@ -13,7 +13,6 @@ $(function () {
         $('#landing .section').waypoint(function(direction) {
             if (direction === 'down') {
                 var sectionclass = $(this).prop('class');
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({event: 'scroll-tracking', section: sectionclass});
             }
         }, { offset: '100%' });
@@ -27,7 +26,6 @@ $(function () {
             var callback = function() {
                 window.location = href;
             };
-            window.dataLayer = window.dataLayer || [];
             if (newTab) {
                 window.dataLayer.push({
                     event: 'contribute-landing-interactions',
@@ -49,7 +47,6 @@ $(function () {
     // Track video plays
     $('a.video-play').on('click', function() {
         var linktype = $(this).data('linktype');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-landing-interactions',
             browserAction: 'Video Interactions',
@@ -66,21 +63,20 @@ $(function () {
             window.location = href;
         };
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
-                    event: 'contribute-landing-interactions',
-                    browserAction: 'How Mozillians Help Every Day',
-                    location: person
-                });
+                event: 'contribute-landing-interactions',
+                browserAction: 'How Mozillians Help Every Day',
+                location: person
+            });
         } else {
             e.preventDefault();
             window.dataLayer.push({
-                    event: 'contribute-landing-interactions',
-                    browserAction: 'How Mozillians Help Every Day',
-                    location: person,
-                    eventCallback: callback
-                });
+                event: 'contribute-landing-interactions',
+                browserAction: 'How Mozillians Help Every Day',
+                location: person,
+                eventCallback: callback
+            });
         }
     });
 
@@ -92,7 +88,6 @@ $(function () {
         var callback = function() {
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'mozillian-stories-interaction',
@@ -118,7 +113,6 @@ $(function () {
             window.location = href;
         };
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'mozillian-stories-interaction',
@@ -157,14 +151,6 @@ $(function () {
     // Track other actions on landing page
     $('.landing-notready .other-actions a')
         .attr('data-element-location', 'not ready');
-    $('.landing-notready .other-actions a').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.open(href);
-        };
-        callback();
-    });
 
     // Track other actions on confirmation page
     $('#thankyou .other-actions a').on('click', function(e) {
@@ -175,7 +161,6 @@ $(function () {
         };
 
         e.preventDefault();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-confirmation-interaction',
             location: 'Other Ways to Support Mozilla',
@@ -192,7 +177,6 @@ $(function () {
             window.location = href;
         };
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'contribute-confirmation-interaction',
@@ -217,14 +201,13 @@ $(function () {
     $('.contrib-extra .event-link').attr('data-element-location', 'bottom');
 
     // Track 'all events' link in the footer
-    $('.contrib-extra .events-all a').attr('data-element-location', 'bottom').attr('data-element-action', 'See All Events');
+    $('.contrib-extra .events-all a').attr({'data-element-location': 'bottom','data-element-action': 'See All Events'});
 
     // Track external links in the footer
     $('.extra-links a').attr('data-element-location', 'bottom');
 
     // Track category clicks on the signup page
     $('.option input').on('change', function() {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-signup-interaction', 
             interaction: 'Category',
@@ -234,7 +217,6 @@ $(function () {
 
     // Track category area selections
     $('.area select').on('change', function() {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-signup-interaction', 
             interaction: 'Area',
@@ -256,7 +238,6 @@ $(function () {
 
         form.off('submit');
         
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-signup-submit',
             contributeNewsletter: newsletterstate,

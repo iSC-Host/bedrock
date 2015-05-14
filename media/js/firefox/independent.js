@@ -19,7 +19,6 @@
         var callback = function() {
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'firefox-downloads', 
@@ -44,7 +43,6 @@
         'onPlay': function() {
             Mozilla.FirefoxAnniversaryVideo.playEmbed();
             Mozilla.FirefoxAnniversaryVideo.setFooterButton('share');
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'video-interaction',
                 interaction: 'click to play',
@@ -54,7 +52,6 @@
         'onComplete': function() {
             Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('replay');
             Mozilla.FirefoxAnniversaryVideo.hideEmbed();
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'video-interaction',
                 interaction: 'Finish',
@@ -66,7 +63,6 @@
     // Autoplay if URL includes the proper hash and client is not a known mobile OS
     if (window.location.href.indexOf('#play') > -1 && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
         Mozilla.FirefoxAnniversaryVideo.playEmbed();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'video-interaction',
             interaction: 'autoplay',

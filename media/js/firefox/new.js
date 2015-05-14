@@ -111,7 +111,6 @@
         }
     }
     //GA Custom Dimension in Pageview
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
         event: 'set-state',
         state: state
@@ -199,7 +198,6 @@
                 // stop in a half-animated state.
                 window.setTimeout(
                     function() {
-                        window.dataLayer = window.dataLayer || [];
                         window.dataLayer.push({
                             event: 'virtual-pageview', 
                             virtualUrl: virtual_url, 
@@ -219,7 +217,6 @@
                 // popup must go before tracking to prevent timeouts that
                 // cause the security blocker.
                 window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     event: 'virtual-pageview', 
                     virtualUrl: virtual_url, 

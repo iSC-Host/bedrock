@@ -42,6 +42,7 @@
 
             if (fxMasterVersion >= 31) {
 
+                // Set syncCapable so we know not to send tracking info
                 // again later
                 syncCapable = true;
 
@@ -99,7 +100,6 @@
     }
 
     var trackClick = function (eventObj, element, event) {
-        window.dataLayer = window.dataLayer || [];
         event.preventDefault();
         eventObj.eventCallback = function() {
                 window.location = element.href;

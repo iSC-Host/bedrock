@@ -32,7 +32,6 @@
         } catch (ex) {
             tourSource = 'none';
         }
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'hello-interactions', 
             'category': '/hello/start interactions', 
@@ -240,7 +239,6 @@
                     resumeTourOnFirstJoin();
 
                     // track user has clicked "Start a conversation" button
-                    window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         'event': 'hello-interactions', 
                         'category': '/hello/start interactions', 
@@ -291,7 +289,6 @@
                 showTourStep();
                 saveTourSourceToLocalStorage();
                 // track user has clicked copy button
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'hello-interactions', 
                     'category': '/hello/start interactions', 
@@ -304,7 +301,6 @@
                 showTourStep();
                 saveTourSourceToLocalStorage();
                 // track user has clicked email button
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'hello-interactions', 
                     'category': '/hello/start interactions', 
@@ -396,7 +392,6 @@
                     // track start of tour in GA
                     if (tourStep === 'get-started') {
                         // Get referrer and set Custom Variable. none is okay here.
-                        window.dataLayer = window.dataLayer || [];
                         window.dataLayer.push({
                             'event': 'hello-interactions-referral', 
                             'category': '/hello/start interactions', 

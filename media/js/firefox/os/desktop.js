@@ -233,7 +233,6 @@
     });
 
     //track GA event for newsletter CTA
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'fxos-consumer',
       interaction: 'click',
@@ -261,7 +260,6 @@
     });
 
     //track GA event for get a phone CTA
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'fxos-consumer',
       interaction: 'click',
@@ -377,7 +375,6 @@
   // tracks click even on nav link, and pauses scroll tracking momentarily
   function navClickGATrack(section_hash) {
     //track GA event for nav clicks
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'fxos-consumer',
       interaction: 'nav click',
@@ -667,7 +664,6 @@
       e.preventDefault();
 
       //track GA event for monitoring if users are clicking on animated scroller
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'fxos-consumer',
         interaction: 'click',
@@ -678,42 +674,33 @@
 
   function trackGAPageNoScroll () {
     $('#adapt1').waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'It adapts, so you can too'});
     });
     $('#adapt2').waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search'});
     });
     $have_it_all.waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Have it All'});
     });
     $('#mission').waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Transform the Future'});
     });
   }
 
   function trackGAPageScroller () {
     $soccer_hook.waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'It adapts, so you can too'});
     });
     $cafe_hook.waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search (restaurant)'});
     });
     $bday_hook.waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search (birthday)'});
     });
     $have_it_all.waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Have it All'});
     });
     $('#mission').waypoint(function () {
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'scroll-tracking', section: 'Transform the Future'});
     });
   }
@@ -724,7 +711,6 @@
 
     $('#adapt-feature-sprite-plus').on(click_event, function(e) {
       e.preventDefault();
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'consumer-page-interaction',
         interaction: 'click',

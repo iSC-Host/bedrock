@@ -8,7 +8,6 @@
     function trackClick(e, href, label, newTab) {
         var callback;
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
                 event: 'whatsnew-search-interaction',
@@ -36,7 +35,6 @@
             var goToAccounts = function () {
                 Mozilla.UITour.showFirefoxAccounts();
             };
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'whatsnew-search-interaction',
                 interaction: 'All',

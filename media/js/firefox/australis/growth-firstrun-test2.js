@@ -13,7 +13,6 @@ function onYouTubeIframeAPIReady() {
     'use strict';
 
     var $document;
-    var pageId = $('body').prop('id');
     var $outerWrapper = $('#outer-wrapper');
     var tour;
     var installedAddons;
@@ -112,9 +111,6 @@ function onYouTubeIframeAPIReady() {
 
                 });
             });
-
-            if (trackCloseClick) {
-            }
         };
 
         enableIframes = function() {
@@ -131,15 +127,6 @@ function onYouTubeIframeAPIReady() {
                 logAddonInstall(e.data.addon);
 
             }
-        });
-
-        // GA for both "what is an add-on?" links
-        $('.what-is-addon').on('click', function(e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-            var parent = $(this).parents('div:first').attr('id');
-            var version = (parent === 'ui-final') ? 'final' : 'main';
-
         });
 
         // Query if the UITour API is working before we start the tour
@@ -218,7 +205,6 @@ function onYouTubeIframeAPIReady() {
 
     listenYTStateChange = function(e) {
         var videoID = e.target.t.getAttribute('id');
-        var videoName = (videoID === 'yt-ghostery')  ? 'Ghostery' : 'Lightbeam';
         var state;
 
         switch (e.data) {
@@ -228,10 +214,6 @@ function onYouTubeIframeAPIReady() {
             case 0:
                 state = 'finish';
                 break;
-        }
-
-        // only track if playing or ended
-        if (state) {
         }
     };
 

@@ -42,7 +42,6 @@
       });
 
       //track GA event for newsletter CTA
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'fxos-consumer',
         interaction: 'click',
@@ -68,7 +67,6 @@
           allowScroll: !isSmallViewport,
           title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
       });
-      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'fxos-consumer',
         interaction: 'click',
@@ -149,7 +147,6 @@
             window.location = href;
         };
 
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({
               event: 'fxos-consumer',
@@ -158,7 +155,6 @@
             });
         } else {
             e.preventDefault();
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
               event: 'fxos-consumer',
               interaction: 'Get A Phone Exit',

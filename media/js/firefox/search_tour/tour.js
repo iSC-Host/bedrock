@@ -61,7 +61,6 @@
         Mozilla.UITour.setSearchTerm('Firefox');
         Mozilla.UITour.openSearchPanel(function() {});
         Mozilla.UITour.setTreatmentTag('srch-chg-action', 'Try');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
@@ -76,7 +75,6 @@
         doorhangerClosed = true;
         $document.off('visibilitychange', handleVisibilityChange);
         Mozilla.UITour.setTreatmentTag('srch-chg-action', 'Close');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
@@ -127,7 +125,6 @@
         Mozilla.UITour.setSearchTerm('Firefox');
         Mozilla.UITour.openSearchPanel(function() {});
         Mozilla.UITour.setTreatmentTag('srch-chg-action', 'Switch');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,
@@ -142,7 +139,6 @@
         doorhangerClosed = true;
         $document.off('visibilitychange', handleVisibilityChange);
         Mozilla.UITour.setTreatmentTag('srch-chg-action', 'Close');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'whatsnew-search-interaction',
             interaction: _trackingID,

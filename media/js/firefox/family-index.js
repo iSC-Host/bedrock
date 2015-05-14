@@ -39,7 +39,6 @@
         var callback = function() {
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({event: 'products-interactions', interaction: 'product click', productName: product});
         } else {
@@ -56,7 +55,6 @@
         var callback = function() {
             window.location = href;
         };
-        window.dataLayer = window.dataLayer || [];
         if (newTab) {
             window.dataLayer.push({event: 'products-interactions', interaction: 'Firefox downloads', productName: product});
         } else {

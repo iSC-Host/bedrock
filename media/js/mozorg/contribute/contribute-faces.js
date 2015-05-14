@@ -100,7 +100,6 @@
         if ($caption.is(':visible') || $caption.is(':animated')) {
             return;
         }
-        window.dataLayer = window.dataLayer || [];
         if (!$facesVid[0].paused) { // If the video is not paused
             $facesVid[0].pause();
             window.dataLayer.push({
@@ -132,7 +131,6 @@
         e.preventDefault();
         var $form = $(this);
         $form.unbind('submit');
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-page-interaction',
             location: 'Want to Help Form - Area of Interest',
@@ -147,7 +145,6 @@
     $('#opportunities a').on('click', function(e) {
         e.preventDefault();
         var href = this.href;
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-page-interactions',
             location: 'exit link',

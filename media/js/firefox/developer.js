@@ -18,24 +18,24 @@ function onYouTubeIframeAPIReady() {
 
     // GA tracking for download buttons
     $('.intro .download-link').on('click', function() {
-        window.dataLayer = window.dataLayer || [];
+        var $this = $(this);
         window.dataLayer.push(
             {
                 event: 'firefox-developer-download', 
                 location: 'primary CTA - download click',
                 eventCallback: function() {
-                    $(this).attr('href');
+                    window.location = $this.attr('href');
                 }
             });
     });
 
     $('.dev-footer .download-link').on('click', function() {
-        window.dataLayer = window.dataLayer || [];
+        var $this = $(this);
         window.dataLayer.push({
                 event: 'firefox-developer-download', 
                 location: 'secondary CTA - bottom download click',
                 eventCallback: function() {
-                    $(this).attr('href');
+                    window.location = $this.attr('href');
                 }
             });
     });
@@ -59,7 +59,6 @@ function onYouTubeIframeAPIReady() {
                 if (window.site.platform !== 'ios' && window.site.platform !== 'android') {
                     event.target.playVideo();
                 }
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'video-interaction',
                     'interaction': 'play',
@@ -69,7 +68,6 @@ function onYouTubeIframeAPIReady() {
 
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
-                    window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         'event': 'video-interaction',
                         'interaction': 'finish',

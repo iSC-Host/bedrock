@@ -51,7 +51,6 @@
     // listen for events in/on Hello menu
     var bindHelloObserver = function() {
         Mozilla.UITour.observe(function(e) {
-            w.dataLayer = w.dataLayer || [];
             switch (e) {
                 case 'Loop:ChatWindowOpened':
                     w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'StartConversation-NoTour'});
@@ -91,7 +90,6 @@
         $(linkSelector).on('click', function(e) {
             var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
             var href = this.href;
-            w.dataLayer = w.dataLayer || [];
             if (newTab) {
                 w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': eventName});
             } else {
@@ -138,7 +136,6 @@
                     // clicking either 'try Hello' button (intro/footer) will open the Hello menu
                     $('.try-hello').on('click', function(e) {
                         e.preventDefault();
-                        w.dataLayer = w.dataLayer || [];
 
                         // (bug 1115227, bug 1130194) pass source to FTU; limit to set values.
                         if (tourSource === 'twitter' || tourSource === 'facebook' || tourSource === 'wiki' || tourSource === 'email') {

@@ -272,7 +272,6 @@ if (typeof Mozilla == 'undefined') {
         } else {
             this.goToTourStep('next');
             step += 1;
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'link click to',
@@ -325,7 +324,6 @@ if (typeof Mozilla == 'undefined') {
             e.preventDefault();
             this.restartTour();
             firstTime = this.checkFirstTime();
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
@@ -336,7 +334,6 @@ if (typeof Mozilla == 'undefined') {
         }, this));
 
         this.doCloseTour();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
@@ -497,7 +494,6 @@ if (typeof Mozilla == 'undefined') {
     BrowserTour.prototype.addForgetButton = function () {
         Mozilla.UITour.hideHighlight();
         Mozilla.UITour.addNavBarWidget('forget', this.highlightForgetButton.bind(this));
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'Add it now',
@@ -643,7 +639,6 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         Mozilla.UITour.addNavBarWidget('loop', function() {
             that.highlightHelloButton();
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'Add it now',
@@ -703,7 +698,6 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'Later',
@@ -876,7 +870,6 @@ if (typeof Mozilla == 'undefined') {
         } else {
             step += 1;
         }
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'arrow click to',
@@ -965,7 +958,6 @@ if (typeof Mozilla == 'undefined') {
             return;
         }
         this.doCloseTour();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'button click',
@@ -1001,7 +993,6 @@ if (typeof Mozilla == 'undefined') {
 
         this.hideAnnotations();
         if (this.tourHasStarted) {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
@@ -1057,7 +1048,6 @@ if (typeof Mozilla == 'undefined') {
         this.$mask.addClass('out');
 
         setTimeout(this.onCompactTour.bind(this), 600);
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
@@ -1112,7 +1102,6 @@ if (typeof Mozilla == 'undefined') {
         setTimeout(function () {
             that.$mask.removeClass('out');
         }, 50);
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
@@ -1180,7 +1169,9 @@ if (typeof Mozilla == 'undefined') {
                 localStorage.setItem(this.options.id, 'taken');
             }
             return firstTime;
-        } catch (e) {}
+        } catch (e) {
+            return 'False';
+        }
     };
 
     /*
@@ -1288,7 +1279,6 @@ if (typeof Mozilla == 'undefined') {
             this.hideAnnotations();
 
             if (this.tourIsVisible) {
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'firstrun-tour-interaction',
                     'interaction': 'visibility',
@@ -1306,7 +1296,6 @@ if (typeof Mozilla == 'undefined') {
                         that.$progress.find('.progress').attr('aria-valuenow', step);
                     }
                 }, 900);
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     'event': 'firstrun-tour-interaction',
                     'interaction': 'visibility',

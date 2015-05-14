@@ -4,7 +4,6 @@
   var $video = $('#firstrun-video');
 
   $video.on('play', function() {
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       'event': 'first-run-video-interaction',
       'interaction': 'play'
@@ -15,7 +14,6 @@
     // using 'ended' results in extra pause tracking.
     var action = ($video[0].currentTime === $video[0].duration) ? 'finish' : 'pause';
 
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       'event': 'first-run-video-interaction',
       'interaction': action

@@ -66,7 +66,6 @@
         // Show/hide the additional content and track the clicks
         $toggle_button.on('click', function() {
             $more.slideToggle('fast', function() {
-                window.dataLayer = window.dataLayer || [];
                 if ($more.is(':visible')) {
                     $toggle_button.addClass('open').text(window.trans('less'));
                     $(this).removeAttr('aria-hidden');
@@ -112,7 +111,6 @@
             }, 400);
             // Track when the video ends
             $video.on('ended', function() {
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     event: 'contribute-video-ended'
                 });
@@ -229,7 +227,6 @@
         var target = $(this).attr('href').replace( /.*?(#.*)/g, "$1" );
         $('<div class="tooltip arrow-top">'+ $(target + ' p').text() +'</div>').insertAfter($this).fadeIn('fast');
         // Track tooltips
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'contribute-tooltip-interaction',
             location: $(target).prop('id')

@@ -55,7 +55,6 @@ function onYouTubeIframeAPIReady() {
 
             function onPlayerReady(event) {
                 event.target.playVideo();
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     event: 'video-interaction',
                     interaction: 'play',
@@ -148,14 +147,12 @@ function onYouTubeIframeAPIReady() {
     // close tour and track button click
     function devToolsDoorhangerClose() {
         showReminderDoorhanger();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Developer Tools doorhanger - button click', browserAction: 'Close Tour'});
     }
 
     // show webIDE doorhanger and track button click
     function nextWebIDEButton() {
         showWebIDEDoorhanger();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Developer Tools doorhanger - button click', browserAction: 'Next:WebIDE'});
     }
 
@@ -255,7 +252,6 @@ function onYouTubeIframeAPIReady() {
 
     function syncDoorhangerClose() {
         showReminderDoorhanger();
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Sync doorhanger - link click', browserAction: 'No Thanks'});
     }
 
@@ -269,7 +265,6 @@ function onYouTubeIframeAPIReady() {
         });
 
         current = TARGET_4;
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Sync doorhanger - button click', browserAction: 'Sync My Firefox'});
     }
 

@@ -5,7 +5,6 @@
     var $body;
     var $ghosteryIframe;
     var $outerWrapper = $('#outer-wrapper');
-    var pageId = $('body').prop('id');
 
     // determines if tour opens or not
     var showDoorhanger;
@@ -173,13 +172,7 @@
 
                     showFxA();
                 }
-                // oauth_complete sent after user verifies account
-                else if (event.data.indexOf('oauth_complete') > -1) {
-                }
-            } else if (event.origin === 'https://addons.mozilla.org' && typeof event.data === 'object') {
-                if (event.data.addon) {
-                }
-            }
+            } 
         });
 
         // if chosen to show doorhanger, get tour setup
@@ -248,12 +241,6 @@
                     Mozilla.UITour.hideMenu('appMenu');
                 });
             }, 50);
-
-        });
-
-        $('#hello-link').on('click', function(e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
 
         });
     }

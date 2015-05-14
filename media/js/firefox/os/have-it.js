@@ -387,7 +387,6 @@
             $(window).scrollTop($($(this).attr('href')).offset().top - primaryNavHeight + secondaryNavHeight);
 
             //track GA event for icon clicks
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'fxos-consumer',
                 interaction: 'click',
@@ -474,7 +473,6 @@
             }, 200);
 
             //track GA event for icon clicks
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'fxos-consumer',
                 interaction: 'click',

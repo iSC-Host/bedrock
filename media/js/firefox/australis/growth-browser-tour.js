@@ -180,9 +180,7 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasFinished = true;
 
         this.hideAnnotations();
-
         if (this.tourHasStarted) {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'firstrun-tour-interaction',
                 interaction: 'click',
