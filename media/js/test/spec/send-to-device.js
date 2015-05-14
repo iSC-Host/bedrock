@@ -114,6 +114,23 @@ describe('send-to-device.js', function() {
         });
     });
 
+    describe('checkEmailValidity', function() {
+
+        it('should return true for primitive email format', function() {
+            expect(form.checkEmailValidity('a@a')).toBeTruthy();
+            expect(form.checkEmailValidity('example@example.com')).toBeTruthy();
+        });
+
+        it('should return false for anything else', function() {
+            expect(form.checkEmailValidity(1234567890)).toBeFalsy();
+            expect(form.checkEmailValidity('aaa')).toBeFalsy();
+            expect(form.checkEmailValidity(null)).toBeFalsy();
+            expect(form.checkEmailValidity(undefined)).toBeFalsy();
+            expect(form.checkEmailValidity(true)).toBeFalsy();
+            expect(form.checkEmailValidity(false)).toBeFalsy();
+        });
+    });
+
     describe('onFormSubmit', function() {
 
         it('should handle success', function() {
@@ -140,7 +157,7 @@ describe('send-to-device.js', function() {
             spyOn($, 'post').andCallFake(function (req) {
                 var d = $.Deferred();
                 var data = {
-                    'error': 'Please enter an email address.'
+                    'errors': 'Please enter an email address.'
                 };
                 d.resolve(data);
                 return d.promise();

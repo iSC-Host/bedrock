@@ -169,7 +169,7 @@
             }
         }
 
-        input[type="text"] {
+        #id-input {
             width: 440px;
             height: 32px;
             padding: 5px 10px;
@@ -230,15 +230,15 @@
     }
 
     .error-list {
-        margin: @baseLine 0;
+        margin-bottom: @baseLine;
+        text-align: left;
 
         li {
             background: #c33b32;
             color: #fff;
-            max-width: 40em;
+            width: 600px;
             margin: @baseLine auto;
-            padding: .5em;
-            text-align: left;
+            padding: 10px;
             border-radius: 3px;
         }
     }
@@ -331,7 +331,7 @@
             }
         }
 
-        input[type="text"] {
+        #id-input {
             width: 360px;
         }
 
@@ -355,6 +355,10 @@ html[dir="rtl"] #send-to-device-form {
         .form-submit {
             float: left;
         }
+    }
+
+    .error-list {
+        text-align: right;
     }
 
     &.dropdown .input {
@@ -401,6 +405,10 @@ html[dir="rtl"] #send-to-device-form {
             }
         }
 
+        .error-list li {
+            width: 620px;
+        }
+
         &.dropdown .input {
             width: auto;
 
@@ -432,7 +440,7 @@ html[dir="rtl"] #send-to-device-form {
                 }
             }
 
-            input[type="text"] {
+            #id-input {
                 width: 440px;
             }
         }
@@ -525,7 +533,7 @@ html[dir="rtl"] #send-to-device-form {
                 }
             }
 
-            input[type="text"] {
+            #id-input {
                 float: none;
                 .border-box();
                 display: block;
@@ -538,6 +546,10 @@ html[dir="rtl"] #send-to-device-form {
                 width: 100%;
                 margin-top: @baseLine;
             }
+        }
+
+        .error-list li {
+            width: auto;
         }
 
         &.dropdown .input {
@@ -554,7 +566,7 @@ html[dir="rtl"] #send-to-device-form {
                 }
             }
 
-            input[type="text"] {
+            #id-input {
                 width: 100%;
             }
         }
