@@ -63,15 +63,8 @@ function init_android_download_links() {
 
 function init_lang_switcher() {
     $('#language').change(function(event) {
-        event.preventDefault();
-        //Google Analytics
-        window.dataLayer.push({
-            'event': 'change-language',
-            'selected-language': $(this).val(),
-                    //e.g. 'Spanish', etc.
-
-            'eventCallback': function() {$('#lang_form').submit();}
-        });
+        var language = $(this).val();
+        $('#lang_form').attr('data-language', language).submit();
     });
 }
 

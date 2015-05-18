@@ -18,29 +18,16 @@ $(function () {
         }, { offset: '100%' });
 
         // Track CTA clicks on landing
-        $('#landing .cta a').on('click', function(e) {
-            var position = $(this).data('position');
-            var label = $(this).data('label');
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-            var callback = function() {
-                window.location = href;
-            };
-            if (newTab) {
-                window.dataLayer.push({
-                    event: 'contribute-landing-interactions',
-                    browserAction: position,
-                    location: label
-                });
-            } else {
-                e.preventDefault();
-                window.dataLayer.push({
-                    event: 'contribute-landing-interactions',
-                    browserAction: position,
-                    location: label,
-                    eventCallback: callback
-                });
-            }
+        $('#landing .cta a').each(function() {
+            var $this = $(this);
+            var position = $this.data('position');
+            var label = $this.data('label');
+
+            $this.attr({
+                'data-element-location': label,
+                'data-element-action': position,
+                'data-tracking-flag': 'contribute-landing'
+            });
         });
     }
 
@@ -55,96 +42,45 @@ $(function () {
     });
 
     // Track Mozillian story clicks on the landing page
-    $('.landing-stories .person .url').on('click', function(e) {
+    $('.landing-stories .person .url').each(function() {
         var person = $(this).parents('.person').find('.fn').text();
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
 
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'contribute-landing-interactions',
-                browserAction: 'How Mozillians Help Every Day',
-                location: person
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'contribute-landing-interactions',
-                browserAction: 'How Mozillians Help Every Day',
-                location: person,
-                eventCallback: callback
-            });
-        }
+        $(this).attr({
+            'data-element-location': person,
+            'data-element-action': 'How Mozillians Help Every Day',
+            'data-tracking-flag': 'contribute-landing'
+        });
     });
 
     // Track Mozillian story clicks on story pages
-    $('.stories-other .person .url').on('click', function(e) {
+    $('.stories-other .person .url').each(function() {
         var person = $(this).parents('.person').find('.fn').text();
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'mozillian-stories-interaction',
-                browserAction: 'Meet a few more Mozillians',
-                location: person
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'mozillian-stories-interaction',
-                browserAction: 'Meet a few more Mozillians',
-                location: person,
-                eventCallback: callback
-            });
-        }
+
+        $(this).attr({
+            'data-element-location': person,
+            'data-element-action': 'Meet a few more Mozillians',
+            'data-tracking-flag': 'mozillians'
+        });
     });
 
     // Track Twitter hashtag clicks on story pages
-    $('.stories-other .section-tagline a').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
+    $('.stories-other .section-tagline a').attr({
+        'data-element-action': 'twitter search link',
+        'data-element-location': '#IAmAMozillian',
+        'data-tracking-flag': 'mozillians'
 
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'mozillian-stories-interaction',
-                browserAction: 'twitter search link',
-                location: '#IAmAMozillian'
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'mozillian-stories-interaction',
-                browserAction: 'twitter search link',
-                location: '#IAmAMozillian',
-                eventCallback: callback
-            });
-        }
     });
 
     // Track Mozillian personal links
-    $('.story-links a').on('click', function(e) {
+    $('.story-links a').each(function() {
         var person = $('.story-title .name').text();
         var link = $(this).prop('class');
-        var href = this.href;
-        var callback = function() {
-            window.open(href);
-        };
 
-        e.preventDefault();
-        window.dataLayer.push({
-            event: 'mozillian-stories-interaction',
-            browserAction: 'social button click',
-            location: person + ' - ' + link,
-            eventCallback: callback
+        $(this).attr({
+            'data-element-location': person + ' - ' + link,
+            'data-element-action': 'social button click',
+            'data-tracking-flag': 'mozillians'
+
         });
     });
 
@@ -153,45 +89,21 @@ $(function () {
         .attr('data-element-location', 'not ready');
 
     // Track other actions on confirmation page
-    $('#thankyou .other-actions a').on('click', function(e) {
+    $('#thankyou .other-actions a').each(function() {
         var label = $(this).data('label');
-        var href = this.href;
-        var callback = function() {
-            window.open(href);
-        };
 
-        e.preventDefault();
-        window.dataLayer.push({
-            event: 'contribute-confirmation-interaction',
-            location: 'Other Ways to Support Mozilla',
-            browserAction: label,
-            eventCallback: callback
+        $(this).attr({
+            'data-element-location': 'Other Ways to Support Mozilla',
+            'data-element-action': label,
+            'data-tracking-flag': 'contribute-confirmation'
         });
     });
 
     // Track Mozillians signup CTA on confirmation page
-    $('.cta-mozillians a').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'contribute-confirmation-interaction',
-                location: 'Mozillians CTA click',
-                browserAction: 'Yes, Create My Mozillians Account'
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'contribute-confirmation-interaction',
-                location: 'Mozillians CTA click',
-                browserAction: 'Yes, Create My Mozillians Account',
-                eventCallback: callback
-            });
-        }
+    $('.cta-mozillians a').attr({
+        'data-element-location': 'Mozillians CTA click',
+        'data-element-action': 'Yes, Create My Mozillians Account',
+        'data-tracking-flag': 'contribute-confirmation'
     });
 
     // Track event links in the list
@@ -208,6 +120,8 @@ $(function () {
 
     // Track category clicks on the signup page
     $('.option input').on('change', function() {
+        var category = this.value;
+        $('#inquiry-form').attr('data-contribute-category', category);
         window.dataLayer.push({
             event: 'contribute-signup-interaction', 
             interaction: 'Category',
@@ -217,36 +131,28 @@ $(function () {
 
     // Track category area selections
     $('.area select').on('change', function() {
+        var area = this.value;
+        $('#inquiry-form').attr('data-contribute-area', area);
         window.dataLayer.push({
             event: 'contribute-signup-interaction', 
             interaction: 'Area',
-            contributeArea: this.value
+            contributeArea: area
         });
     });
 
     // Track signup form submissions
     $('#inquiry-form').on('submit', function(e) {
         e.preventDefault();
-        var form = $(this);
         var newsletterstate;
-
         if ($('#id_newsletter').is(':checked')) {
             newsletterstate = 'True';
         } else {
             newsletterstate = 'False';
         }
 
-        form.off('submit');
-        
-        window.dataLayer.push({
-            event: 'contribute-signup-submit',
-            contributeNewsletter: newsletterstate,
-            contributeArea: form.find('input[name="category"]').val(),
-            contributeCategory: form.find('.area:visible select').val(),
-            eventCallback: function() {
-                form.submit();
-            }
-        });
+        $(this).off('submit');
+        $(this).attr('data-contribute-newsletter', newsletterstate);
+        $(this).submit();
     });
 
 });

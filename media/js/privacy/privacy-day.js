@@ -42,29 +42,18 @@ $(function() {
     });
 
     // Setup GA tracking for paragraph and list links
-    $('.tip-column p a, .tip-column li a').on('click', function(e) {
-        href = $(this).attr('href');
-        window.dataLayer.push({
-            event: 'privacy-interactions',
-            browserAction: pager.currentPage.id,
-            interaction: $(this).attr('href'),
-            eventCallback: function() {
-                window.location = href;
-            }
-        });
+    $('.tip-column p a, .tip-column li a').attr({
+        'data-element-action': pager.currentPage.id,
+        'data-interaction': 'href',
+        'data-tracking-flag': 'privacy'
+
     });
 
     // Setup GA tracking TED video link
-    $('.greenwald a').on('click', function(e) {
-        href = $(this).attr('href');
-        window.dataLayer.push({
-            event: 'privacy-interactions',
-            browserAction: pager.currentPage.id,
-            interaction: 'Why Privacy Matters CTA Btn',
-            eventCallback: function() {
-                window.location = href;
-            }
-        });
+    $('.tip-column p a, .tip-column li a').attr({
+        'data-element-action': pager.currentPage.id,
+        'data-interaction': 'Why Privacy Matters CTA Btn',
+        'data-tracking-flag': 'privacy'
     });
 
     // Setup GA tracking for next tab buttons

@@ -136,35 +136,6 @@
     }
 
     /*
-    * Track telecom provider link clicks/page exits in Google Analytics
-    */
-    function trackProviderExit (e) {
-        var $this = $(this);
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-
-        var callback = function () {
-            window.location = href;
-        };
-
-        if (newTab) {
-            window.dataLayer.push({
-              event: 'fxos-consumer',
-              interaction: 'Get A Phone Exit',
-              location: $this.text()
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-              event: 'fxos-consumer',
-              interaction: 'Get A Phone Exit',
-              location: $this.text(),
-              eventCallback: callback
-            });
-        }
-    }
-
-    /*
     * Set page specific content relating to geo for partner data etc
     */
     function setPartnerContent () {
@@ -186,7 +157,12 @@
             $provider.show();
 
             // setup GA event tracking on telecom provider exit links
-            $('#provider-links a').on('click', trackProviderExit);
+            $('#provider-links a').each(function() {
+                $(this).attr({
+                    'data-element-location': $(this).text(), 
+                    'data-interaction': 'Get A Phone Exit'
+                });
+            });
         } else {
             $('.primary-cta-signup').removeClass('hidden');
         }

@@ -188,72 +188,51 @@
     };
 
     // Track panel clicks
-    $('.panel-content a').on('click', function(e) {
-        e.preventDefault();
+    $('.panel-content a').each(function() {
         var panel = $(this).parents('.panel');
-        var href = this.href;
-        var callback = function() {
-            $(this).blur();
-            window.location = href;
-        };
-        window.dataLayer.push({
-            event: 'homepage-interaction', 
-            interaction: 'click', 
-            location: (panel.index() + 1)+':'+panel.attr('id'), 
-            eventCallback: callback
+        var location = (panel.index() + 1)+':'+panel.attr('id');
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': 'click',
+            'data-element-location': location
         });
     });
 
     // Track donate clicks
-    $('#home-promo-donate-form').submit(function(e) {
-        e.preventDefault();
-
-        var $form = $(this);
-        $form.unbind('submit');
-
+    $('#home-promo-donate-form').each(function() {
         var panel = $(this).parents('.panel');
-
-        window.dataLayer.push({
-            event: 'homepage-interaction',
-            interaction: 'submit',
-            location: (panel.index() + 1) + ':donate',
-            eventCallback: function() { $form.submit(); }
+        var location = (panel.index() + 1) + ':donate';
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': 'submit',
+            'data-element-location': location
         });
     });
 
     // Track news & contribute clicks
-    $('.extra-news a, .extra-contribute a, .engage a').on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
+    $('.extra-news a, .extra-contribute a, .engage a').each(function() {
         var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
-
-        window.dataLayer.push({
-            event: 'homepage-interaction',
-            interaction: action,
-            location: href,
-            eventCallback: callback
+        
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': action,
+            'data-element-location': this.href
         });
     });
 
     // Track Firefox downloads
-    $('.download-link').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
+    $('.download-link').each(function() {
         var platform;
-        if ($(this).parents('li').hasClass('os_android')) {
+        $this = $(this);
+        if ($this.parents('li').hasClass('os_android')) {
             platform = 'Firefox for Android';
         } else {
             platform = 'Firefox Desktop';
         }
-        window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click', downloadVersion: platform, eventCallback: callback});
+        $this.attr({
+            'data-interaction': 'download click', 
+            'data-download-version': platform
+        });
     });
 
 })(window.jQuery);

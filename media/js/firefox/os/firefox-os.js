@@ -59,7 +59,12 @@
             $provider.show();
 
             // setup GA event tracking on telecom provider exit links
-            $('#provider-links a').on('click', trackProviderExit);
+            $('#provider-links a').each(function() {
+                $(this).attr({
+                    'data-element-location': $(this).text(), 
+                    'data-interaction': 'Get A Phone Exit'
+                });
+            });
 
             // persistent pencil icon is distracting/obtrusive on small screens
             if ($window.width() > 480) {
@@ -124,6 +129,14 @@
                 $langPanel.addClass('visible');
 
                 // hide panel when clicking outside in document
+                $('.lang-panel').each(function() {
+                    $this = $(this);
+                    $this.attr({
+                        'data-element-location': $this.data('lang'),
+                        'data-interaciton': 'Indian Language Selection'
+                    });
+                    
+                });
                 $document.on('click.lang-panel', function (e) {
                     var $target = $(e.target);
 
@@ -146,17 +159,9 @@
                             } catch (ex) {}
                         }
                         href = $target.attr('href');
-                        window.dataLayer = window.dataLayer || [];
-                        window.dataLayer.push({
-                            event: 'fxos-consumer',
-                            interaction: 'Indian Language Selection',
-                            location: language,
-                            eventCallback: function() {
-                                if (language !== 'English') {
-                                    window.location = href;
-                                }
-                            }
-                        });
+                        if (language !== 'English') {
+                            window.location = href;
+                        }
                     }
                 });
 
@@ -164,25 +169,6 @@
                 $window.on('scroll.lang-panel', toggleLangContentSelector);
             }, 50);
         }
-    }
-
-    /*
-    * Track telecom provider link clicks/page exits in Google Analytics
-    */
-    function trackProviderExit (e) {
-        e.preventDefault();
-        var $this = $(this);
-        var href = this.href;
-
-        var callback = function () {
-            window.location = href;
-        };
-        window.dataLayer.push({
-            event: 'fxos-consumer',
-            interaction: 'Get A Phone Exit',
-            location: $this.text(),
-            eventCallback: callback
-        });
     }
 
     /*
@@ -223,19 +209,10 @@
         }
     }
 
-    $('#useful-links').on('click', 'a', function (e) {
-        e.preventDefault();
-        var that = this;
-        var callback = function () {
-            window.location = that.href;
-        };
-
-        //track GA event for useful links
-        window.dataLayer.push({
-            event: 'fxos-consumer',
-            interaction: 'click',
-            location: this.href,
-            eventCallback: callback
+    $('#useful-links').each(function() {
+        $(this).attr({
+            'data-interaction': 'click', 
+            'data-element-location': $(this).href
         });
     });
 

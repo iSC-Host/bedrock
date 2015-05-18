@@ -17,28 +17,9 @@ function onYouTubeIframeAPIReady() {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     // GA tracking for download buttons
-    $('.intro .download-link').on('click', function() {
-        var $this = $(this);
-        window.dataLayer.push(
-            {
-                event: 'firefox-developer-download', 
-                location: 'primary CTA - download click',
-                eventCallback: function() {
-                    window.location = $this.attr('href');
-                }
-            });
-    });
+    $('.intro .download-link').attr('data-element-location', 'primary CTA - download click');
+    $('.dev-footer .download-link').attr('data-element-location', 'secondary CTA - bottom download click');
 
-    $('.dev-footer .download-link').on('click', function() {
-        var $this = $(this);
-        window.dataLayer.push({
-                event: 'firefox-developer-download', 
-                location: 'secondary CTA - bottom download click',
-                eventCallback: function() {
-                    window.location = $this.attr('href');
-                }
-            });
-    });
 
     function onYouTubeIframeAPIReady() {
 

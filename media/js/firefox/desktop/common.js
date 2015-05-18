@@ -16,12 +16,7 @@
             $masthead_download_firefox.attr('href', $masthead_download_firefox.attr('href') + '#download-fx');
         }
 
-        var trackDownloadButtonClick = function(a, position) {
-            var href = a.href;
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - ' + position, downloadVersion: 'Firefox for Desktop', eventCallback: function() {
-                            window.location = href;}});
-        };
-
+        var downloadVersion = 'Firefox for Desktop';
         // hide the footer download button and extend email form to full width
         $('#download-wrapper').show();
         $('#subscribe-wrapper').addClass('columned');
@@ -33,25 +28,14 @@
         $('#sticky-download-desktop').fadeIn('fast');
 
         // show the top nav download button and set up GA tracking
-        $masthead_download_firefox.fadeIn('fast').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'nav');
-        });
+        $masthead_download_firefox.attr({'data-interaction': 'download click - nav', 'data-download-version': downloadVersion});
+        $masthead_download_firefox.fadeIn('fast');
 
         // Track Firefox download click in overview intro section
-        $('#firefox-desktop #intro .download-link').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'primary');
-        });
+        $('#firefox-desktop #intro .download-link').attr({'data-interaction': 'download click - primary', 'data-download-version': downloadVersion});
 
         // Track Firefox download click in footer
-        $('#subscribe-download-wrapper .download-link').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'bottom');
-        });
+        $('#subscribe-download-wrapper .download-link').attr({'data-interaction': 'download click - bottom', 'data-download-version': downloadVersion});
     }
 
     $('.ga-section').waypoint(function(dir) {

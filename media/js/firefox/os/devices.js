@@ -77,28 +77,9 @@ if (typeof window.Mozilla === 'undefined') {
     * Track telecom provider link clicks/page exits in Google Analytics
     */
 
-    var trackProviderExit = function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'overlay-exit'
-            });
-        } else {
-            e.preventDefault();
-
-            var href = this.href;
-            var callback = (newTab) ? null : function() {
-                window.location = href;
-            };
-            window.dataLayer.push({
-                event: 'overlay-exit',
-                eventCallback: callback
-            });
-        }
-    };
-
     // setup GA event tracking on telecom provider exit links
-    $providerLinks.on('click', 'a', trackProviderExit);
+    $('#provider-links a').attr({'data-element-action': 'overlay exit'});
+
 
     /*
     * Disable/enable mozilla-pagers.js

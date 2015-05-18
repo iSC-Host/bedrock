@@ -83,45 +83,37 @@ $(function () {
     }, { offset: '100%' });
 
     // track download firefox promo clicks
-    $('.promo-small-landscape.firefox-download a.download-link').on('click', function(e) {
+    $('.promo-small-landscape.firefox-download a.download-link').each(function() {
+        var platform;
         var $this = $(this);
         var $promo = $this.closest('.promo-small-landscape');
         var isAndroid = $promo.find('li.os_android:visible').length > 0;
         var type = isAndroid ? 'Firefox Android' : 'Firefox Desktop';
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
         var tilePosition = $promo.prop('id');
         var tileSize = 'promo-small-landscape';
-
-        if (newTab) {
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - top', downloadVersion: type, tilePosition: tilePosition, tileSize: tileSize});
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - top', downloadVersion: type, tilePosition: tilePosition, tileSize: tileSize, eventCallback: callback});
-        }
+        
+        $this.attr({
+            'data-interaction': 'download click - top', 
+            'data-download-version': type,
+            'data-tile-position': tilePosition,
+            'data-tile-size': tileSize
+        });
     });
 
     // track Firefox download section button clicks
-    $('#firefox-download-section a.download-link').on('click', function(e) {
+    $('#firefox-download-section a.download-link').each(function() {
+        var platform;
         var $this = $(this);
-        var isAndroid = $this.parent().hasClass('os_android');
-        var type = isAndroid ? 'Firefox Android' : 'Firefox Desktop';
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
-        if (newTab) {
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - primary', downloadVersion: type});
+        if ($this.parents('li').hasClass('os_android')) {
+            platform = 'Firefox Android';
         } else {
-            e.preventDefault();
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click - primary', downloadVersion: type, eventCallback: callback});
+            platform = 'Firefox Desktop';
         }
+        $this.attr({
+            'data-interaction': 'download click - primary', 
+            'data-download-version': platform
+        });
+
     });
 
 });

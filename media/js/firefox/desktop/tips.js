@@ -174,27 +174,9 @@
             });
         });
 
-        $('a[rel="external"]').on('click', function(e) {
-            e.preventDefault();
+        $('a[rel="external"]').attr({'data-interaction': 'outbound link'});
 
-            var href = this.href;
+        $('#footer-download .download-link').attr({'data-interaction': 'download click', 'data-download-version': 'Firefox for Desktop'});
 
-            window.dataLayer.push({
-                event: 'tips-interaction',
-                interaction: 'outbound link',
-                browserAction: href,
-                eventCallback: function() {
-                    window.location = href;}
-            });
-        });
-
-        $('#footer-download .download-link').on('click', function(e) {
-            e.preventDefault();
-
-            var href = this.href;
-
-            window.dataLayer.push({event: 'firefox-downloads', interaction: 'download click', downloadVersion: 'Firefox for Desktop', eventCallback: function() {
-                window.location = href;}});
-        });
     });
 })(window.jQuery, window.Hammer);

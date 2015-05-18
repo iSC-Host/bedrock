@@ -288,18 +288,21 @@
     };
 
     // track link on the primary CTA
-    $('#intro .dl-button').on('click', function (event) {
-        trackClick({event: 'firefox-downloads', interaction: 'download click', downloadVersion: 'Firefox for Android'}, event);
+    $('#intro .dl-button').attr({
+        'data-interaction': 'download click', 
+        'data-download-version': 'Firefox for Android'
     });
 
     // track link on the secondary CTA
-    $('#subscribe-download-wrapper .dl-button').on('click', function(event) {
-        trackClick({event: 'firefox-downloads', interaction: 'button download click', downloadVersion: 'Firefox for Android'}, event);
+    $('#subscribe-download-wrapper .dl-button').attr({
+        'data-interaction': 'button download click', 
+        'data-download-version': 'Firefox for Android'
     });
 
     // track links except the accordion
-    $('#privacy, #sync, #subscribe-download-wrapper ul').on('click', 'a', function(event) {
-        trackClick({event: 'firefox-downloads', interaction: 'link click', downloadVersion: $(this).attr('href')}, event);
+    $('#privacy, #sync, #subscribe-download-wrapper ul').attr({
+        'data-interaction': 'link click', 
+        'data-download-version': 'href'
     });
 
 

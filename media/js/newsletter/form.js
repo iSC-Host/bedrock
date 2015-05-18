@@ -78,19 +78,21 @@ $(function () {
         // because this submit handler won't even be invoked until the input
         // validates.
         if (('checkValidity' in $self) || validateForm($self)) {
-
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            $self.off('submit');
             newsletter = getNewsletterName($self);
 
-            if (typeof(gaTrack) === 'function' && newsletter !== '') {
-                // Need to wait to submit, until after we're sure we've sent
-                // the tracking event to GA.
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                $self.off('submit');
-                window.dataLayer.push({event: 'newsletter-interaction', browserAction: 'submit', newsletter: newsletter, eventCallback: $self.submit() });
+            if (newsletter !== '') {
+                $self.attr({
+                    'data-element-action': 'submit',
+                    'data-newsletter-name': newsletter,
+                    'data-tracking-flag': 'newsletter'
+                });
             }
+
+            $self.submit();
         }
-        // Else, just let the form submit.
     });
 
     /*

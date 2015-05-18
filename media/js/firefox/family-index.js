@@ -31,36 +31,11 @@
         }
     }
 
-    // Track product clicks
-    $('.product-list').on('click', 'a', function(e) {
-        var newTab = ($(this).target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = $(this).attr('href');
-        var product = $(this).data('product');
-        var callback = function() {
-            window.location = href;
-        };
-        if (newTab) {
-            window.dataLayer.push({event: 'products-interactions', interaction: 'product click', productName: product});
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({event: 'products-interactions', interaction: 'product click', productName: product, eventCallback: callback});
-        }
-    });
+    // add gtm tracking attributes
+    $('.product-list a').attr('data-interaction', 'click');
+     
+    // add gtm tracking attributes
+    $('#conditional-download-bar a').attr('data-interaction', 'Firefox downloads');
 
-    // Track download bar clicks
-    $downloadbar.on('click', 'a', function(e) {
-        var newTab = ($(this).target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = $(this).attr('href');
-        var product = $(this).data('product');
-        var callback = function() {
-            window.location = href;
-        };
-        if (newTab) {
-            window.dataLayer.push({event: 'products-interactions', interaction: 'Firefox downloads', productName: product});
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({event: 'products-interactions', interaction: 'Firefox downloads', productName: product, eventCallback: callback});
-        }
-    });
 
 })(window.jQuery);

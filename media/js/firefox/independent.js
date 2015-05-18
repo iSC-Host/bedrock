@@ -13,28 +13,8 @@
         $('#fx10-download').show();
     }
 
-    $('#fx10-download .download-link').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-        if (newTab) {
-            window.dataLayer.push({
-                event: 'firefox-downloads', 
-                interaction: 'download click', 
-                downloadVersion: window.site.platform
-            });
-        } else {
-            e.preventDefault();
-            window.dataLayer.push({
-                event: 'firefox-downloads', 
-                interaction: 'download click', 
-                downloadVersion: window.site.platform, 
-                eventCallback: callback
-            });
-        }
-    });
+    //set up GA tracking through GTM
+    $('#fx10-download .download-link').attr({'data-interaction': 'download-click', 'data-download-version': window.site.platform});
 
     // Initialize the video
     // Defined in /js/base/firefox-anniversary-video.js

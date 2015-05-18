@@ -255,67 +255,8 @@ if (typeof window.Mozilla === 'undefined') {
             // fade in nav wrapper (temp while testing 2 navs)
             $fxFamilyNavWrapper.addClass('active');
 
-            _initGA();
         };
-
-        // analytics
-        var _initGA = function() {
-            // clicks on subnav links
-            // TODO: test and fix
-            $subNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-
-                var parentName = $this.data('id').split('-');
-
-                var trackName = ($fxFamilyHeader.hasClass('stuck')) ? parentName[0] + ' - Persistent Nav' : parentName[0];
-
-                var childName = parentName[1];
-
-                if (parentName.length > 2) {
-                    childName += ' ' + parentName[2];
-                }
-
-                if (e.metaKey || e.ctrlKey) {
-                    window.dataLayer.push({
-                        event: 'family-nav2-interaction',
-                        location: trackName,
-                        browserAction: childName
-                    });
-                } else {
-                    e.preventDefault();
-                    window.dataLayer.push({
-                        event: 'family-nav2-interaction',
-                        location: trackName,
-                        browserAction: childName,
-                        eventCallback: function() {
-                            window.location = $this.attr('href');
-                        }
-                    });
-                }
-            });
-
-            // clicks on tertiary nav links
-            $tertiaryNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-                if (e.metaKey || e.ctrlKey || $this.attr('rel') === 'external') {
-                    window.dataLayer.push({
-                        event: 'family-nav2-interaction',
-                        location: 'Side Menu',
-                        browserAction: $this.data('ga')
-                    });
-                } else {
-                    e.preventDefault();
-                    window.dataLayer.push({
-                        event: 'family-nav2-interaction',
-                        location: 'Side Menu',
-                        browserAction: $this.data('ga'),
-                        eventCallback: function() {
-                            window.location = $this.attr('href');
-                        }
-                    });
-                }
-            });
-        };
+        
 
         // public interface
         return {
@@ -537,83 +478,8 @@ if (typeof window.Mozilla === 'undefined') {
             // fade in nav wrapper (temp while testing 2 navs)
             $fxFamilyNavWrapper.addClass('active');
 
-            _initGA();
         };
-
-        // analytics
-        var _initGA = function() {
-            // clicks on top level nav links
-            $primaryLinks.on('click', function(e) {
-                var $this = $(this);
-                if (e.metaKey || e.ctrlKey) {
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: $this.data('id'),
-                        browserAction: $this.data('id') + ' - top nav link'
-                    });
-                } else {
-                    e.preventDefault();
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: $this.data('id'),
-                        browserAction: $this.data('id') + ' - top nav link',
-                        eventCallback: function() {
-                            window.location = $(this).attr('href');
-                        }
-                    });
-                }
-            });
-
-            // clicks on subnav links
-            $subNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-
-                var parentName = $this.data('id').split('-');
-
-                var trackName = ($fxFamilyHeader.hasClass('stuck')) ? parentName[0] + ' - Persistent Nav' : parentName[0];
-                if (e.metaKey || e.ctrlKey) {
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: trackName,
-                        browserAction: parentName[1]
-                    });
-                } else {
-                    e.preventDefault();
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: trackName,
-                        browserAction: parentName[1],
-                        eventCallback: function() {
-                            window.location = $this.attr('href');
-                        }
-                    });
-                }
-            });
-
-            // clicks on tertiary nav links
-            $tertiaryNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-
-                if (e.metaKey || e.ctrlKey || $this.attr('rel') === 'external') {
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: 'Side Menu',
-                        browserAction: $this.data('ga')
-                    });
-                } else {
-                    e.preventDefault();
-                    window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: 'Side Menu',
-                        browserAction: $this.data('ga'),
-                        eventCallback: function() {
-                            window.location = $this.attr('href');
-                        }
-                    });
-                }
-            });
-        };
-
+        
         // public interface
         return {
             init: function(config) {

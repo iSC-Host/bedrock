@@ -201,10 +201,8 @@
                         window.dataLayer.push({
                             event: 'virtual-pageview', 
                             virtualUrl: virtual_url, 
-                            eventCallback: function() {
-                                window.location.href = url;
-                            }
                         });
+                        window.location.href = url;
                     },
                     500
                 );
@@ -219,10 +217,7 @@
                 window.open(url, 'download_window', 'toolbar=0,location=no,directories=0,status=0,scrollbars=0,resizeable=0,width=1,height=1,top=0,left=0');
                 window.dataLayer.push({
                     event: 'virtual-pageview', 
-                    virtualUrl: virtual_url, 
-                    eventCallback: function() {
-                        window.location.href = url;
-                    }
+                    virtualUrl: virtual_url
                 });
             }
 

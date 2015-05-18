@@ -99,41 +99,33 @@
         });
     }
 
-    var trackClick = function (eventObj, element, event) {
-        event.preventDefault();
-        eventObj.eventCallback = function() {
-                window.location = element.href;
-            };
-        window.dataLayer.push(eventObj);
-    };
-
     // Setup GA tracking for Firefox download button
-    $('#cta-firefox, .download-button .download-link').on('click', function(e) {
-        trackClick({event: 'firefox-downloads',
-            interaction: 'download click',
-            downloadVersion: 'Firefox'}, this, e);
+    $('#cta-firefox, .download-button .download-link').attr({
+        'data-interaction': 'download click', 
+        'data-download-version': 'Firefox'
     });
+
 
     // Setup GA tracking for Firefox update button
-    $('#cta-update').on('click', function(e) {
-        trackClick({event: 'firefox-downloads',
-            interaction: 'update click',
-            downloadVersion: 'Firefox'}, this, e);
+    $('#cta-update').attr({
+        'data-interaction': 'update click',
+        'data-download-version': 'Firefox'
     });
+
 
     // Setup GA tracking for Firefox for primary Android download button
-    $('#cta-android').on('click', function(e) {
-        trackClick({event: 'firefox-downloads',
-            interaction: 'top',
-            downloadVersion: 'Firefox for Android'}, this, e);
+    $('#cta-android').attr({
+        'data-interaction': 'top',
+        'data-download-version': 'Firefox for Android'
     });
 
+
     // Setup GA tracking for Firefox for Android footer download button
-    $('#cta-android-footer').on('click', function(e) {
-        trackClick({event: 'firefox-downloads',
-            interaction: 'bottom',
-            downloadVersion: 'Firefox for Android'}, this, e);
+    $('#cta-android-footer').attr({
+        'data-interaction': 'bottom',
+        'data-download-version': 'Firefox for Android'
     });
+
 
     Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'sync' });
 })(window.jQuery, window.Mozilla);

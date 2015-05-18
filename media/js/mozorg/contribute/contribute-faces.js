@@ -131,28 +131,20 @@
         e.preventDefault();
         var $form = $(this);
         $form.unbind('submit');
-        window.dataLayer.push({
-            event: 'contribute-page-interaction',
-            location: 'Want to Help Form - Area of Interest',
-            browserAction: $('#id_contribute-interest')[0].value,
-            eventCallback: function() {
-                $form.submit();
-            }
+        var action = $('#id_contribute-interest')[0].value;
+        $form.attr({
+            'data-element-location': 'Want to Help Form - Area of Interest',
+            'data-element-action': action,
+            'data-tracking-flag': 'contribute-interaction'
         });
+        $form.submit();
     });
 
     // Track opportunity links
-    $('#opportunities a').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        window.dataLayer.push({
-            event: 'contribute-page-interactions',
-            location: 'exit link',
-            browserAction: href,
-            eventCallback: function() {
-                window.location = href;
-            }
-        });
+    $('#opportunities a').attr({
+        'data-element-action': 'href',
+        'data-element-location': 'exit link',
+        'data-tracking-flag': 'contribute-interaction'
     });
 
 

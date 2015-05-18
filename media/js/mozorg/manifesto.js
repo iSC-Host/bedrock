@@ -169,6 +169,14 @@ $(function() {
     });
 
     // Set up content link handler
+    $('#main-content a').each(function() {
+        if (!$(this).hasClass('share-button')) {
+            $(this).attr({
+                'data-element-action': 'content link click',
+                'data-element-section': $(this).text()
+            });
+        }
+    });
     $('#main-content a').on('click', function (event) {
         var $this = $(this);
         var href = $this.attr('href');
@@ -180,15 +188,8 @@ $(function() {
             open_twitter_subwin('custom', href);
         } else if (!$this.hasClass('share-button')) {
             // Open the link in the current tab
+            location.href = href;
 
-            window.dataLayer.push({
-                event: 'manifesto-interaction',
-                browserAction: 'content link click',
-                section: $this.text(),
-                eventCallback: function() {
-                    location.href = href;
-                }
-            });
         }
     });
 
