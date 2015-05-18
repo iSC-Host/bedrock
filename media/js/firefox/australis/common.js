@@ -63,5 +63,6 @@
             var url = this.href;
             window.open(url, '_blank');
         });
+    });
 
 })(window.jQuery, window.Mozilla);
